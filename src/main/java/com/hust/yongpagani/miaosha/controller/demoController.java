@@ -1,46 +1,70 @@
 package com.hust.yongpagani.miaosha.controller;
 
+import com.hust.yongpagani.miaosha.domain.User;
 import com.hust.yongpagani.miaosha.result.CodeMsg;
 import com.hust.yongpagani.miaosha.result.Result;
-import org.springframework.stereotype.Controller;
+import com.hust.yongpagani.miaosha.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.jws.WebParam;
 
 /**
  * @author Created by Divo
  * @date 2020/10/28
  */
-@Controller
+@RestController
 @RequestMapping("/demo")
 public class demoController {
 
+    @Autowired
+    public UserService userService;
+
+
     @RequestMapping("/home")
-    @ResponseBody
     String home() {
         return "hello world";
     }
 
     //成功
     @RequestMapping("/msg_sucess")
-    @ResponseBody
     Result<String> msgSucess() {
         return Result.success("hello ,world");
     }
 
     //失败
     @RequestMapping("/msg_error")
-    @ResponseBody
     Result<String> msgError() {
         return Result.error(CodeMsg.SERVER_ERROR);
     }
 
-    //失败
+
     @RequestMapping("/thymeleaf")
     String thymeleaf(Model model) {
         model.addAttribute("name","Pangani、BC");
         return "hello";
     }
+
+    @RequestMapping("/db/get")
+    public Result<User> dbGet() {
+        User user = userService.getById(1);
+        return Result.success(user);
+    }
+
+    //测试事务
+    @RequestMapping("/db/tx")
+    public Result<Boolean> tx() {
+        userService.tx();
+        return Result.success(true);
+    }
+
+    //测试整合Redis
+//    @RequestMapping("/db/tx")
+//    public Result<Boolean> tx() {
+//        userService.tx();
+//        return Result.success(true);
+//    }
+
+
 }
