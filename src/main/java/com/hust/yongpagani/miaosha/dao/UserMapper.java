@@ -18,4 +18,5 @@ public interface UserMapper {
     @Insert("insert into user(id,name) values (#{id},#{name})")
     int insertUser(User user);
 
+
 }

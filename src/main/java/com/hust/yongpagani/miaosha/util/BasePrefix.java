@@ -4,7 +4,7 @@ package com.hust.yongpagani.miaosha.util;
  * @author Created by Divo
  * @date 2020/10/30
  */
-public class BasePrefix implements KeyPrefix {
+public abstract class BasePrefix implements KeyPrefix {
 
     private int expireSeconds;
 
@@ -13,6 +13,10 @@ public class BasePrefix implements KeyPrefix {
     public BasePrefix(int expireSeconds, String prefix) {
         this.expireSeconds = expireSeconds;
         this.prefix = prefix;
+    }
+
+    public BasePrefix(String prefix) {
+        this(0, prefix);
     }
 
     @Override

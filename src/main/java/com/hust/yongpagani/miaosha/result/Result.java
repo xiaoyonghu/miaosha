@@ -44,7 +44,6 @@ public class Result<T> {
         return new Result<>(cm);
     }
 
-
     public int getCode() {
         return code;
     }

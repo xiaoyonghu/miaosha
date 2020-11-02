@@ -5,10 +5,11 @@ package com.hust.yongpagani.miaosha.util;
  * @date 2020/10/30
  */
 public class UserKey extends BasePrefix{
-    public UserKey(int expireSeconds, String prefix) {
-        super(expireSeconds, prefix);
+    private UserKey(String prefix) {
+        super(prefix);
     }
 
-//    public static UserKey getById = new UserKey("id");
-//    public static UserKey getByName = new UserKey("name");
+    public static UserKey getById = new UserKey("id");
+    public static UserKey getByName = new UserKey("name");
+
 }

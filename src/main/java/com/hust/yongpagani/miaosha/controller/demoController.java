@@ -3,7 +3,9 @@ package com.hust.yongpagani.miaosha.controller;
 import com.hust.yongpagani.miaosha.domain.User;
 import com.hust.yongpagani.miaosha.result.CodeMsg;
 import com.hust.yongpagani.miaosha.result.Result;
+import com.hust.yongpagani.miaosha.service.RedisService;
 import com.hust.yongpagani.miaosha.service.UserService;
+import com.hust.yongpagani.miaosha.util.UserKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ public class demoController {
     @Autowired
     public UserService userService;
 
+    @Autowired
+    public RedisService redisService;
 
     @RequestMapping("/home")
     String home() {
@@ -60,11 +64,21 @@ public class demoController {
     }
 
     //测试整合Redis
-//    @RequestMapping("/db/tx")
-//    public Result<Boolean> tx() {
-//        userService.tx();
-//        return Result.success(true);
-//    }
+    @RequestMapping("/redis/set")
+    public Result<Boolean> redisSet() {
+        User user = new User(1,"1111");
+
+        redisService.set(UserKey.getById,""+1,user);
+
+        return Result.success(true);
+    }
+
+    //测试整合Redis
+    @RequestMapping("/redis/get")
+    public Result<User> redisGet() {
+        User user = redisService.get(UserKey.getById, "" + 1, User.class);
+        return Result.success(user);
+    }
 
 
 }

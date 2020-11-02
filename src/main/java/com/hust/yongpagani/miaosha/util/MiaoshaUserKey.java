@@ -7,7 +7,7 @@ package com.hust.yongpagani.miaosha.util;
 public class MiaoshaUserKey extends BasePrefix {
     public static final int TOKEN_EXPIRE = 3600 * 24 * 2;
 
-    public MiaoshaUserKey(int expireSeconds, String prefix) {
+    private MiaoshaUserKey(int expireSeconds, String prefix) {
         super(expireSeconds, prefix);
     }
 
