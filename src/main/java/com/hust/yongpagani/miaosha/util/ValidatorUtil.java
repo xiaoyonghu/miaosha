@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * @author Created by Divo
  * @date 2020/11/1
- * Description:用来校验
+ * Description:用来校验的工具
  */
 public class ValidatorUtil {
 
