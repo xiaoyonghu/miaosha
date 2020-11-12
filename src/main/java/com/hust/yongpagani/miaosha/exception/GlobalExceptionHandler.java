@@ -2,6 +2,8 @@ package com.hust.yongpagani.miaosha.exception;
 
 import com.hust.yongpagani.miaosha.result.CodeMsg;
 import com.hust.yongpagani.miaosha.result.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -20,8 +22,12 @@ import java.util.List;
 @ResponseBody
 public class GlobalExceptionHandler {
 
+    public static Logger log  = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(value = Exception.class)
     public Result<String> exceptionHandler(HttpServletRequest req, Exception e) {
+
+        log.info("GlobalExceptionHandler 中捕获的异常 ："+e.getMessage());
 
         //自定义全局异常
         if (e instanceof GlobalException) {

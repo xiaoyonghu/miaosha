@@ -25,6 +25,7 @@ public class demoController {
 
     @Autowired
     public RedisService redisService;
+    private Result<User> success;
 
     @RequestMapping("/home")
     String home() {
@@ -55,6 +56,7 @@ public class demoController {
         User user = userService.getById(1);
         return Result.success(user);
     }
+
 
     //测试事务
     @RequestMapping("/db/tx")

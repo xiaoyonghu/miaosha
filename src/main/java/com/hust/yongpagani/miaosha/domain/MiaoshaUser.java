@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * @author Created by Divo
  * @date 2020/10/31
+ * 描述：用户信息
  */
 public class MiaoshaUser {
     private Long id;
