@@ -10,9 +10,19 @@ import java.util.Date;
  * Description: 用来封装（整合）商品信息
  */
 public class GoodsVo extends Goods {
+
+    private Double miaoshaPrice;
     private Integer stockCount;
     private Date startDate;
     private Date endDate;
+
+    public Double getMiaoshaPrice() {
+        return miaoshaPrice;
+    }
+
+    public void setMiaoshaPrice(Double miaoshaPrice) {
+        this.miaoshaPrice = miaoshaPrice;
+    }
 
     public Integer getStockCount() {
         return stockCount;

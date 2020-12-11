@@ -70,7 +70,7 @@ public class RedisService {
     /**
      * 设置过期时间
      */
-    public <T> boolean set(KeyPrefix prefix, String key, T value) {
+    public <T> boolean   set(KeyPrefix prefix, String key, T value) {
         String str = beanToString(value);
 
         if (str == null || str.length() <= 0) {

@@ -8,12 +8,14 @@ import com.hust.yongpagani.miaosha.result.CodeMsg;
 import com.hust.yongpagani.miaosha.util.MD5Util;
 import com.hust.yongpagani.miaosha.util.MiaoshaUserKey;
 import com.hust.yongpagani.miaosha.util.UUIDUtil;
+import com.hust.yongpagani.miaosha.vo.GoodsVo;
 import com.hust.yongpagani.miaosha.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author Created by Divo
@@ -28,4 +30,11 @@ public class GoodsService {
     @Autowired
     GoodsMapper goodsMapper;
 
+    public List<GoodsVo> goodsVoList() {
+        return goodsMapper.listGoodsVo();
+    }
+
+    public GoodsVo getGoodsVoByGoodsId(long goodsId) {
+        return goodsMapper.getGoodsVoByGoodsId(goodsId);
+    }
 }

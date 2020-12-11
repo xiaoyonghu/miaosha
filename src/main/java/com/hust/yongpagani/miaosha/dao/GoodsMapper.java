@@ -1,10 +1,12 @@
 package com.hust.yongpagani.miaosha.dao;
 
-import com.hust.yongpagani.miaosha.domain.User;
-import org.apache.ibatis.annotations.Insert;
+import com.hust.yongpagani.miaosha.vo.GoodsVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -15,8 +17,15 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface GoodsMapper {
 
-    @Insert("insert into user(id,name) values (#{id},#{name})")
-    int insertUser(User user);
+    @Select("select g.* ," +
+            "mg.stock_count, mg.start_date, mg.end_date, mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id = g.id")
+    List<GoodsVo> listGoodsVo();
 
+//    @Select("select g.* ," +
+//            "mg.stock_count, mg.start_date, mg.end_date, mg.miaosha_price " +
+//            "from miaosha_goods mg left join goods g on mg.goods_id = g.id" +
+//            "where g.id = #{goodsId}")
+    @Select("select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id = g.id where g.id = #{goodsId}")
+    GoodsVo getGoodsVoByGoodsId(@Param("goodsId") long goodsId);
 
 }
