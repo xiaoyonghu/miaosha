@@ -2,6 +2,7 @@ package com.hust.yongpagani.miaosha.service;
 
 import com.hust.yongpagani.miaosha.dao.GoodsMapper;
 import com.hust.yongpagani.miaosha.dao.MiaoshaUserMapper;
+import com.hust.yongpagani.miaosha.domain.MiaoshaGoods;
 import com.hust.yongpagani.miaosha.domain.MiaoshaUser;
 import com.hust.yongpagani.miaosha.exception.GlobalException;
 import com.hust.yongpagani.miaosha.result.CodeMsg;
@@ -36,5 +37,11 @@ public class GoodsService {
 
     public GoodsVo getGoodsVoByGoodsId(long goodsId) {
         return goodsMapper.getGoodsVoByGoodsId(goodsId);
+    }
+
+    public void reduceStock(GoodsVo goods) {
+        MiaoshaGoods g = new MiaoshaGoods();
+        g.setGoodsId(goods.getId());
+        goodsMapper.reduceStock(g);
     }
 }
